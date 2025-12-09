@@ -1,0 +1,35 @@
+Get-Command -Verb Get -Noun *DNS*
+
+Get-Help Set-Printer 
+
+Get-Command -Name *IP*
+
+Get-Command -name Get*IPAddress*
+
+Get-NetIPAddress | Where-Object IPAddress -EQ "172.30.2.120"
+
+
+Get-NetIPAddress | Format-Table 
+
+help Get-NetIPAddress -examples
+
+new-alias -Name IP -Value Get-NetIPAddress
+
+Get-Service | Get-Member
+
+
+Get-Service | Select-Object -Property Name, Status
+
+get-service | where-object -Property status -eq "Stopped" | GM
+
+
+Get-Service | where-Object status -eq "Stopped" |
+Select-Object Name,Status | More
+
+
+(Get-Service | Where-Object Status -EQ "Sotpped" | Select-Object Name, Status).count
+
+$data = Get-Service | Where-Object Status -EQ "Running"
+
+
+
