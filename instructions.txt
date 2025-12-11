@@ -32,4 +32,62 @@ Select-Object Name,Status | More
 $data = Get-Service | Where-Object Status -EQ "Running"
 
 
+Get-Children ENV: | more
+
+
+$env:NUMBER_OF_PROCESSORS
+
+$env:COMPUTERNAME
+
+Write-Host "The Name of the computer is $ENV:COMPUTERNAME"
+
+
+
+Get-Service | Fortmat-List 
+
+Get-Service | Where-Object Name -EQ "ZTHELPER" | Format-List
+
+
+help Get-NetFirewallRule -Examples 
+
+Get-NetFirewallRule 
+
+Get-NetFirewallRule -Name *RemoteDesktop* | Format-Table
+
+Get-NetFirewallRule -Name "RemoteDesktop-In-TCP-WS" | Set-NetFirewallRule -Enabled 'True' -Whatif
+
+
+"ipconfig" | cmd 
+
+Get-ChilItem . 
+
+help Get-ChildItem -Examples 
+
+Get-ChildItem C:\Windows\Web 
+
+Get-ChildItem C:\Windows\Web -Recurse
+
+Get-ChildItem C:\Windows\web -recurse -name 
+
+
+dir C:\Windows\web -recurse -name 
+
+
+ls C:\Windows\web -recurse -name
+
+
+
+New-Item -ItemType File -Path C:\Users\princej\Documents\pipo.txt 
+
+New-Item -ItemType Directory .\NewFile01 
+
+$Function:Mkdir 
+
+Copy-Item -path C:\Windows\web -Destination .\CopiedFolder -Recurse -Verbose 
+
+Set-Location .\CopiedFolder
+
+gci -R -n 
+
+
 
