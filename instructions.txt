@@ -89,5 +89,27 @@ Set-Location .\CopiedFolder
 
 gci -R -n 
 
+Get-Location 
+
+(Get-CimInstance Win32_OperatingSystem).LastBootUpTime
+
+1..109 | ForEach-Object { Add-Content -Path .\LineNumbers.txt -Value "This is line $_." }
 
 
+Get-Content -Path .\LineNumbers.txt -TotalCount 5
+
+Get-Item -Path .\LineNumbers.txt | Get-Content -Tail 5
+
+get-Service | Where-Object Status -Eq "Stopped" | Out-file .\StoppedServices.txt 
+
+Get-Service | export-csv demo2.csv 
+
+Import-csv demo.csv | where-Object -property Name -like *xbox*" | format-table Name,Description
+
+Get-ComputerInfo | Get-Member 
+
+Get-ExecutionPolicy
+
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
+
+Get-Service | Select-Object -Property DisplayName,MachineName,Status,ServiceType | where-Object -property DisplayName -like "*xbox*"
