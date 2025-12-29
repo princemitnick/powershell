@@ -113,3 +113,4 @@ Get-ExecutionPolicy
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
 
 Get-Service | Select-Object -Property DisplayName,MachineName,Status,ServiceType | where-Object -property DisplayName -like "*xbox*"
+

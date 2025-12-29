@@ -1,0 +1,139 @@
+Très bonne observation — et tu n’es pas fou.
+👉 Oui, c’est possible d’avoir Windows 11 avec “3 modes” visibles, et d’autres postes avec un seul mode apparent.
+La différence ne vient ni de toi, ni des GPO, mais du matériel + du firmware + de la façon dont Windows expose l’UI.
+
+Je t’explique simplement, sans contradictions.
+
+🧠 La clé pour comprendre (en 1 phrase)
+
+Windows 11 peut afficher les “3 modes” de DEUX façons différentes selon le type de matériel, même si le système est en Modern Standby (S0).
+
+🔎 Les DEUX cas possibles sous Windows 11
+🔹 CAS 1 — Postes où tu vois 3 modes clairement
+
+Souvent :
+
+PC de bureau
+
+Laptop plus ancien
+
+Certains modèles OEM bien configurés
+
+Dans Paramètres → Alimentation, tu vois :
+
+Économie d’énergie
+
+Équilibré
+
+Meilleures performances
+
+👉 En réalité :
+
+Ce ne sont PAS des plans d’alimentation
+
+C’est un sélecteur de performance (power mode)
+
+📌 powercfg /list affichera quand même :
+
+Utilisation normale (Balanced)
+
+
+➡️ Un seul plan, 3 modes dynamiques
+
+🔹 CAS 2 — Postes où tu vois seulement “Utilisation normale”
+
+Souvent :
+
+Laptops récents (Dell, Lenovo, HP)
+
+CPU récents
+
+BIOS / firmware plus strict
+
+Gestion d’énergie OEM (Intel / Lenovo / Dell)
+
+Dans Paramètres → Alimentation, tu vois :
+
+Utilisation normale
+
+OU un curseur très limité
+
+👉 MAIS en arrière-plan :
+
+Toujours Modern Standby (S0)
+
+Toujours un seul plan
+
+Les modes sont gérés automatiquement par le système / firmware
+
+⚠️ Point ULTRA important (là où tout se mélange)
+
+👉 Les “3 modes” que tu as vus ne sont PAS les anciens plans
+👉 Même sur ce poste :
+
+powercfg /list
+
+
+➡️ Tu verras UN seul plan.
+
+C’est juste une différence d’interface, pas de capacité système.
+
+🧪 Test imparable (à faire sur les 2 postes)
+
+Sur les DEUX machines, exécute :
+
+powercfg /list
+
+
+Résultat attendu sur les deux :
+
+* Utilisation normale
+
+
+Puis :
+
+powercfg /a
+
+
+Si tu vois :
+
+Veille (Mode faible consommation S0)
+
+
+➡️ Même technologie
+➡️ Même limitation
+➡️ Même conclusion
+
+❌ Pourquoi tu ne peux pas “forcer” le même affichage partout
+
+L’UI dépend :
+
+du BIOS
+
+du firmware
+
+du pilote chipset
+
+de la gestion OEM
+
+Microsoft ne garantit PAS une UI identique entre modèles
+
+👉 Aucune GPO, aucun script, aucun réglage AD ne peut uniformiser ça.
+
+🧠 Comment expliquer ça simplement à Luc / au client
+
+Tu peux dire :
+
+Même sous Windows 11, l’affichage des modes d’alimentation peut varier selon le matériel et le fabricant. Certains postes affichent plusieurs modes de performance, tandis que d’autres gèrent ces modes automatiquement en arrière-plan. Dans tous les cas, il s’agit d’un seul plan d’alimentation géré dynamiquement par le système.
+
+🧾 Note interne (ultra claire)
+
+Différences d’affichage des modes d’alimentation observées entre postes Windows 11. Tous utilisent Modern Standby (S0) et un plan d’alimentation unique. L’UI varie selon le matériel et le firmware OEM. Aucun contrôle AD/GPO ne permet d’uniformiser l’affichage.
+
+🏁 Conclusion finale (à retenir)
+
+✔️ Tu as raison d’avoir vu les 3 modes ailleurs
+✔️ Ce n’étaient pas des plans d’alimentation
+✔️ Le comportement est normal
+✔️ Ce n’est ni une erreur TI ni une GPO
+❌ On ne peut pas forcer l’uniformité
