@@ -49,3 +49,21 @@ Move-ADDirectoryOperationMasterRole -Identity DC01 -OperationMasterRole SchemaMa
 Restart-Computer -Force
 
 
+Invoke-Command -ScriptBlock { Add-LocalGroupMember 'Remote Desktop Users' -Member Developer,NonDeveloper} -ComputerName BRAWKS1
+
+
+Add-Computer -DomainName "Corp.SandyNetworking01.com" -Credential (Get-Credential) -Restart -Force
+
+djoin.exe /provision /domaine Corp.SandyNetworking01.com /machine PC-01 /savefile C:\Temp\PC-01.txt
+
+djoin.exe /requestodj /loadfile C:\Temp\PC-01.txt /windowspath %SystemRoot% /localos
+
+
+# Ajout d'un utilisateur local au groupe des utilisateurs du bureau à distance
+net localgroup "Remote Desktop Users" "CORP\PC-01$" /add
+
+#How to enable Active Directory Recycle Bin
+
+Import-Module ActiveDirectory
+Enable-ADOptionalFeature -Identity 'Recycle Bin Feature' -Scope ForestOrConfigurationSet -Target 'Corp.SandyNetworking01.com'
+

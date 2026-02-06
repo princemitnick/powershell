@@ -13,3 +13,6 @@ foreach ($s in $services) {
         Write-Host "$s non trouvé."
     }
 }
+
+
+Get-Package -Name "Lenovo System Update" | Uninstall-Package -Force
